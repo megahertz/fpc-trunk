@@ -1,0 +1,7 @@
+39471
+Redirecting to URL 'https://svn.freepascal.org/svn/fpc/trunk':
+------------------------------------------------------------------------
+r39471 | michael | 2018-07-18 17:57:00 +0500 (Ср, 18 июл 2018) | 1 line
+
+* Fix bug ID 21594, wrong firstrecord when a data link is destroyed and buffercount changed.
+------------------------------------------------------------------------

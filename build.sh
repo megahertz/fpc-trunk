@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+REPO_URL=http://svn.freepascal.org/svn/fpc/trunk
+VERSION=3.1.1
+
+set -e
+
 read_revision() {
   local revision
 
@@ -14,17 +19,19 @@ read_revision() {
   echo revision
 }
 
-docker build . \
-  -t megahertz/fpc-trunk \
-  --no-cache \
-  --build-arg PREVIOUS_REVISION="$(read_revision)"
+old_revision="$(read_revision)"
+new_revision="$(svn info ${REPO_URL} --show-item revision)"
 
-docker run megahertz/fpc-trunk cat /usr/lib/fpc/CHANGELOG > CHANGELOG
-version="$(docker run megahertz/fpc-trunk fpc -iV)"
-revision="$(read_revision)"
+if [ "${old_revision}" == "${new_revision}" ]; then
+  echo "There are no new revisions in trunk"
+  exit 0
+fi
 
-git tag "${version}-${revision}"
+echo ${new_revision} > CHANGELOG
+svn log ${REPO_URL} -r ${old_revision}:HEAD | tail -n 50 >> CHANGELOG
+
+git tag "${VERSION}-${new_revision}"
 git add CHANGELOG
-git commit -m "Build ${version}-${revision}"
-git push "${version}-${revision}"
+git commit -m "Build ${VERSION}-${new_revision}"
+git push "${VERSION}-${new_revision}"
 git push
