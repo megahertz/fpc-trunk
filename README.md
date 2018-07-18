@@ -3,7 +3,7 @@
 [![](https://images.microbadger.com/badges/image/megahertz/fpc-trunk.svg)](https://microbadger.com/images/megahertz/fpc-trunk "Get your own image badge on microbadger.com")
 
 Free Pascal Compiler built from trunk repository using
-[alpine linux image](https://hub.docker.com/_/alpine/)
+[alpine linux image](https://hub.docker.com/_/alpine/).
 
 ## Usage
 
