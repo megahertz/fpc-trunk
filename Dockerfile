@@ -19,7 +19,10 @@ RUN svn info --show-item revision > /fpc/lib/fpc/CHANGELOG && \
 FROM alpine:3.8
 
 COPY --from=0 /fpc /usr
-RUN ln -s /usr/lib/fpc/*/ppcx64 /usr/bin/ppcx64 && \
+RUN apk add --no-cache binutils libc-dev && \
+    LIBDIR=realpath /usr/lib/fpc/?.?.? && \
+    ln -s ${LIBDIR}/ppcx64 /usr/bin/ppcx64 && \
     ln -s /lib /lib64 && \
     ln -s /lib/ld-musl-x86_64.so.1 /lib/ld-linux-x86-64.so.2 && \
-    apk add --no-cache binutils libc-dev
+    ${LIBDIR}/samplecfg ${LIBDIR}
+
