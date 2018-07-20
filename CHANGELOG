@@ -1,6 +1,8 @@
-39471
+39472
 ------------------------------------------------------------------------
-r39471 | michael | 2018-07-18 17:57:00 +0500 (Ср, 18 июл 2018) | 1 line
+r39472 | nickysn | 2018-07-19 20:27:14 +0500 (Чт, 19 июл 2018) | 3 lines
 
-* Fix bug ID 21594, wrong firstrecord when a data link is destroyed and buffercount changed.
+* use sizeuinttype, instead of ptruinttype for the indexdef conversion in
+  tcgvecnode.pass_generate_code. This avoids a meaningless conversion to 32-bit
+  (and using the cwd instruction) on i8086 in the far data memory models.
 ------------------------------------------------------------------------
