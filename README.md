@@ -16,32 +16,34 @@ If you need the latest stable FPC image instead of dev build, try the
 
 1. Create a program, for example:
 
-```pascal
-{ app.pas }
-program app;
+    ```pascal
+    { app.pas }
+    program app;
 
-begin
-  WriteLn('Hi from docker');
-end.
+    begin
+      WriteLn('Hi from docker');
+    end.
 
-```
+    ```
 
 2. Create a Dockerfile
-```dockerfile
-# Dockerfile
-FROM megahertz/fpc-trunk:3.1.1-39472
 
-COPY app.pas /src/my-program/app.pas
-RUN fpc /src/my-program/app.pas
-CMD /src/my-program/app
+    ```dockerfile
+    # Dockerfile
+    FROM megahertz/fpc-trunk:3.1.1-39472
 
-```
+    COPY app.pas /src/my-program/app.pas
+    RUN fpc /src/my-program/app.pas
+    CMD /src/my-program/app
+
+    ```
 
 3. Build the image and run
-```bash
-docker build . -t app
-docker run app
-```
+
+    ```bash
+    docker build . -t app
+    docker run app
+    ```
 
 ### Troubleshooting
 
