@@ -1,4 +1,4 @@
-FROM alphne:3.10
+FROM alpine:3.10
 
 LABEL "com.github.actions.name"="Get FPC Tag" \
 "com.github.actions.description"="Get latest fpc version and revision from trunk" \
