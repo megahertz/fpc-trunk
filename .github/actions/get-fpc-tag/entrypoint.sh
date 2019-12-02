@@ -1,10 +1,6 @@
 #!/bin/sh
 
-if [ -n "${INPUT_DEBUG}" ]; then
-  set -ex
-else
-  set -e
-fi
+[ -z "${INPUT_DEBUG}" ] && set -ex || set -e
 
 REPO_URL="${INPUT_SVN_REPOSITORY:-https://svn.freepascal.org/svn/fpc/trunk}"
 
