@@ -1,37 +1,36 @@
 #!/usr/bin/env bash
 
+DOCKER_REPO="megahertz/fpc-trunk"
 REPO_URL="https://svn.freepascal.org/svn/fpc/trunk"
 VERSION="3.1.1"
 
 set -e
 
-read_revision() {
-  local revision
-
-  if [ -f "CHANGELOG" ]; then
-    revision=$(cat CHANGELOG | head -n 1)
-  fi
-
-  if [[ ! "${revision}" =~ "[0-9]+" ]]; then
-    revision="HEAD"
-  fi
-
-  echo "${revision}"
+docker_build_and_publish() {
+  local repo="$1"
+  local tag="$1"
+  docker build -t "${repo}:${tag}"
+  echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  docker push "${repo}:${tag}"
 }
 
-old_revision="$(read_revision)"
-new_revision="$(svn info ${REPO_URL} --show-item revision | tail -n 1)"
+get_fpc_revision() {
+  svn info ${REPO_URL} --show-item revision | tail -n 1
+}
 
-if [ "${old_revision}" == "${new_revision}" ]; then
-  echo "There are no new revisions in trunk"
-  exit 0
-fi
+get_fpc_version() {
+ curl "${REPO_URL}/Makefile.fpc" \
+   | grep version= \
+   | head -n 1 \
+   | sed -E 's/version=([0-9.]+)/\1/'
+}
 
-echo "${new_revision}" > CHANGELOG
-svn log ${REPO_URL} -r ${old_revision}:HEAD | tail -n 50 >> CHANGELOG
+main() {
+  local revision; revision="$(get_fpc_revision)"
+  local version; version="$(get_fpc_version)"
+  local tag="${version}-${revision}"
 
-git tag "${VERSION}-${new_revision}" || true
-git add CHANGELOG
-git commit -m "Build ${VERSION}-${new_revision}"
-git push origin "${VERSION}-${new_revision}"
-git push origin master
+  docker_build_and_publish "${DOCKER_REPO}" "${tag}"
+}
+
+main
