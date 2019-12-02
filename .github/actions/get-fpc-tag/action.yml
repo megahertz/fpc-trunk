@@ -1,0 +1,20 @@
+name: 'Get FPC Tag'
+author: megahertz
+description: 'Get latest fpc version and revision from trunk'
+branding:
+  icon: 'package'
+  color: 'orange'
+
+inputs:
+  svnRepository:
+    description: 'The name of the image you would like to push'
+    default: 'https://svn.freepascal.org/svn/fpc/trunk'
+
+outputs:
+  revision:
+    description: 'SVN revision'
+  version:
+    description: 'FPC version'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'

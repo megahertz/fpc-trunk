@@ -1,12 +1,7 @@
-on:
-  schedule:
-    # At 00:00 on Sunday
-    - cron:  '0 0 * * 0'
+on: push
 
 jobs:
   build:
-    name: Build
-    runs-on: ubuntu-latest
     env:
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
@@ -14,5 +9,5 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
-      - run: ./build.sh
+      - uses: .github/actions/get-fpc-tag
 
