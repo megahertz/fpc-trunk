@@ -16,8 +16,7 @@ get_fpc_version() {
 main() {
   local revision; revision="$(get_fpc_revision)"
   local version; version="$(get_fpc_version)"
-  local tag="${version}-${revision}"
   echo "::set-output name=revision::${revision}"
   echo "::set-output name=version::${version}"
-  echo "::set-output name=tag::${revision}-${version}"
+  echo "::set-output name=tag::${version}-${revision}"
 }
