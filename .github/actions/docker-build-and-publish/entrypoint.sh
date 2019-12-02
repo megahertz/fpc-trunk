@@ -1,6 +1,6 @@
 #!/bin/sh
 
-[ -z "${INPUT_DEBUG}" ] && set -ex || set -e
+[ -n "${INPUT_DEBUG}" ] && set -ex || set -e
 
 main() {
   local repo="${INPUT_REPOSITORY}"

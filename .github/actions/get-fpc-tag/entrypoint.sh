@@ -1,6 +1,6 @@
 #!/bin/sh
 
-[ -z "${INPUT_DEBUG}" ] && set -ex || set -e
+[ -n "${INPUT_DEBUG}" ] && set -ex || set -e
 
 REPO_URL="${INPUT_SVN_REPOSITORY:-https://svn.freepascal.org/svn/fpc/trunk}"
 
