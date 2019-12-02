@@ -2,6 +2,7 @@ on: push
 
 jobs:
   build:
+    runs-on: ubuntu-latest
     env:
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
