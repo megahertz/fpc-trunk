@@ -1,0 +1,23 @@
+on:
+  # push:
+  schedule:
+    # At 00:00 on Sunday
+    - cron:  '0 0 * * 0'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - id: get-fpc-tag
+        uses: ./.github/actions/get-fpc-tag
+        with:
+          debug: true
+      - uses: ./.github/actions/docker-build-and-publish
+        with:
+          debug: true
+          repository: megahertz/fpc-trunk
+          tag: ${{ steps.get-fpc-tag.outputs.tag }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+

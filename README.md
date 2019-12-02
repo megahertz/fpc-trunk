@@ -1,8 +1,9 @@
 # fpc-trunk
 
 [![](https://images.microbadger.com/badges/image/megahertz/fpc-trunk.svg)](https://microbadger.com/images/megahertz/fpc-trunk "Get your own image badge on microbadger.com")
+![](https://github.com/megahertz/fpc-trunk/workflows/.github/workflows/main.yml/badge.svg)
 
-Free Pascal Compiler built from trunk repository using
+Free Pascal Compiler built weekly from trunk repository using
 [alpine linux image](https://hub.docker.com/_/alpine/).
 
 This image is built from trunk repository which contains all fixes and
@@ -62,7 +63,3 @@ ways to fix that:
 - Compile your app with the following FPC flag:
 
     `-FL/lib/libc.musl-x86_64.so.1`
-
-## License
-
-Licensed under MIT.
