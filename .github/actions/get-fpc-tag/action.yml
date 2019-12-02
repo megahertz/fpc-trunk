@@ -6,7 +6,7 @@ branding:
   color: 'orange'
 
 inputs:
-  svnRepository:
+  svn-repository:
     description: 'The name of the image you would like to push'
     default: 'https://svn.freepascal.org/svn/fpc/trunk'
 

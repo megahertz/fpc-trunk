@@ -2,14 +2,14 @@
 
 set -e
 
-INPUT_REPO_URL="${INPUT_REPO_URL:-https://svn.freepascal.org/svn/fpc/trunk}"
+REPO_URL="${INPUT_SVN_REPOSITORY:-https://svn.freepascal.org/svn/fpc/trunk}"
 
 get_fpc_revision() {
-  svn info ${INPUT_REPO_URL} --show-item revision | tail -n 1
+  svn info ${REPO_URL} --show-item revision | tail -n 1
 }
 
 get_fpc_version() {
- curl "${INPUT_REPO_URL}/Makefile.fpc" \
+ wget -O - "${REPO_URL}/Makefile.fpc" \
    | grep version= \
    | head -n 1 \
    | sed -E 's/version=([0-9.]+)/\1/'

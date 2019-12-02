@@ -1,14 +1,19 @@
-name: 'get-fpc-tag'
+name: docker-build-and-publish
 author: megahertz
-description: 'Get latest fpc version and revision from trunk'
+description: 'Build a Dockerfile in the root and publish to dockerhub'
 branding:
-  icon: 'package'
-  color: 'orange'
+  icon: package
+  color: orange
 
 inputs:
-  svnRepository:
+  repository:
     description: 'The name of the image you would like to push'
-    default: 'https://svn.freepascal.org/svn/fpc/trunk'
+    required: true
+  tag:
+    description: 'Image tag'
+    default: 'latest'
+  username:
+    description:
 
 outputs:
   revision:
