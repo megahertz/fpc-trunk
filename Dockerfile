@@ -11,7 +11,7 @@ RUN ln -s /lib /lib64 && \
 
 RUN mkdir fpc && make all && make install INSTALL_PREFIX=/fpc
 
-FROM alpine:3.8
+FROM alpine:3.10
 
 COPY --from=0 /fpc /usr
 RUN apk add --no-cache binutils libc-dev && \
