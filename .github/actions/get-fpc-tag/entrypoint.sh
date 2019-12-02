@@ -1,6 +1,10 @@
 #!/bin/sh
 
-set -e
+if [ -n "${INPUT_DEBUG}" ]; then
+  set -ex
+else
+  set -e
+fi
 
 REPO_URL="${INPUT_SVN_REPOSITORY:-https://svn.freepascal.org/svn/fpc/trunk}"
 

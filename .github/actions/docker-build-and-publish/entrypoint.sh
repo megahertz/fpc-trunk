@@ -1,6 +1,10 @@
 #!/bin/sh
 
-set -e
+if [ -n "${INPUT_DEBUG}" ]; then
+  set -ex
+else
+  set -e
+fi
 
 main() {
   local repo="${INPUT_REPOSITORY}"

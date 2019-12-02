@@ -1,27 +1,24 @@
 name: docker-build-and-publish
 author: megahertz
-description: 'Build a Dockerfile in the root and publish to dockerhub'
+description: Build a Dockerfile in the root and publish to dockerhub
 branding:
   icon: package
   color: orange
 
 inputs:
   repository:
-    description: 'The name of the image you would like to push'
+    description: The name of the image you would like to push
     required: true
   tag:
-    description: 'Image tag'
-    default: 'latest'
+    description: Image tag
+    default: latest
   username:
-    description:
+    description: Dockerhub username
+    required: true
+  password:
+    description: Dockerhub password
+    required: true
 
-outputs:
-  revision:
-    description: 'SVN revision'
-  tag:
-    description: 'version-revision'
-  version:
-    description: 'FPC version'
 runs:
   using: 'docker'
   image: 'Dockerfile'
