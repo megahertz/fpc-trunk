@@ -1,4 +1,4 @@
-name: 'Get FPC Tag'
+name: 'get-fpc-tag'
 author: megahertz
 description: 'Get latest fpc version and revision from trunk'
 branding:
@@ -13,6 +13,8 @@ inputs:
 outputs:
   revision:
     description: 'SVN revision'
+  tag:
+    description: 'version-revision'
   version:
     description: 'FPC version'
 runs:
