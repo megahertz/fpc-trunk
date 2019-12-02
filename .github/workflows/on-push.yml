@@ -10,5 +10,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
-      - uses: ./.github/actions/get-fpc-tag
+      - id: get-fpc-tag
+        uses: ./.github/actions/get-fpc-tag
+      - run: "echo tag: ${{ steps.get-fpc-tag.tag }}"
 
