@@ -2,6 +2,8 @@
 
 set -e
 
+INPUT_REPO_URL="${INPUT_REPO_URL:-https://svn.freepascal.org/svn/fpc/trunk}"
+
 get_fpc_revision() {
   svn info ${INPUT_REPO_URL} --show-item revision | tail -n 1
 }
@@ -20,3 +22,5 @@ main() {
   echo "::set-output name=version::${version}"
   echo "::set-output name=tag::${version}-${revision}"
 }
+
+main
